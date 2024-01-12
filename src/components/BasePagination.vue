@@ -1,3 +1,26 @@
+<script setup lang="ts">
+import { toRef } from "vue";
+import usePagination from "@/composable/usePagination";
+
+const props = defineProps(["visiblePages", "totalPages", "currentPage", "totalItems", 'to_page', 'from_page']);
+
+const { pagination } = usePagination(
+  toRef(props, "totalPages"),
+  toRef(props, "visiblePages"),
+  toRef(props, "currentPage")
+);
+
+console.log('pagination', pagination)
+
+function getButtonLabel(page: number) {
+  if (page === props.totalPages) {
+    return `Go to page ${page}, the last page`;
+  } else {
+    return `Go to page ${page}`;
+  }
+}
+</script>
+
 <template>
   <div class="flex justify-between items-center">
     <div class="flex">
@@ -47,41 +70,4 @@
   </div>
 </template>
 
-<script setup lang="ts">
-import { toRef } from "vue";
-import usePagination from "@/composable/usePagination";
 
-const props = defineProps(["visiblePages", "totalPages", "currentPage", "totalItems", 'to_page', 'from_page']);
-
-const { pagination } = usePagination(
-  toRef(props, "totalPages"),
-  toRef(props, "visiblePages"),
-  toRef(props, "currentPage")
-);
-
-console.log('pagination', pagination)
-
-function getButtonLabel(page: number) {
-  if (page === props.totalPages) {
-    return `Go to page ${page}, the last page`;
-  } else {
-    return `Go to page ${page}`;
-  }
-}
-</script>
-
-<style scoped >
-* {
-  box-sizing: border-box;
-}
-
-
-button[aria-current] {
-  outline: blue 2px solid;
-  outline-offset: 2px;
-}
-
-button[aria-disabled] {
-  opacity: 50%;
-}
-</style>

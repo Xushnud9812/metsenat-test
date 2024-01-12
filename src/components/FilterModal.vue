@@ -1,8 +1,7 @@
-<script setup>
+<script setup lang="ts">
 import { ref } from 'vue'
 import BaseSelect from '@/components/BaseSelect.vue'
 
-const isModal = ref(false)
 const activeBtn = ref(1)
 
 const emit = defineEmits(['closeModal'])
@@ -54,7 +53,7 @@ const closeModal = () => {
               </button>
               <button :class="activeBtn == index + 1 ? 'border border-primary' : 'border border-[#E0E7FF]'"
                 class="relative flex items-center gap-1 font-medium font-rubik text-[13px]  p-4 rounded "
-                v-for="item, index in 6" :key="index" @click="activeBtn = index + 1">1
+                v-for="btn, index in 6" :key="btn + index" @click="activeBtn = index + 1">1
                 000 000
                 <span v-if="activeBtn == index + 1" class="absolute top-0 -translate-y-1/2 right-0 translate-x-1/2"><svg
                     xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16" fill="none">

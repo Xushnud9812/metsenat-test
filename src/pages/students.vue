@@ -3,14 +3,13 @@ import { ref, watch } from 'vue'
 import { api } from '@/api'
 import BasePagination from '../components/BasePagination.vue';
 
-import { useRouter } from 'vue-router'
 
 const students = ref()
 const totalStudents = ref()
-const currentPage = ref<Number>(1)
+const currentPage = ref(1)
 const totalPages = ref<Number>(1)
 const from_page = ref<Number>(1)
-const to_page = ref<Number>(10)
+const to_page = ref(10)
 const fetchData = async () => {
   try {
     const response = await api.get('/student-list/');
@@ -19,8 +18,6 @@ const fetchData = async () => {
     totalPages.value = Math.ceil(response.data.count / 10)
     to_page.value = currentPage.value * 10
     from_page.value = to_page.value - 9
-    console.log(response)
-    console.log(response)
   } catch (error) {
     console.error('Error occurred:', error);
   }
@@ -28,7 +25,7 @@ const fetchData = async () => {
 
 fetchData()
 
-watch(currentPage, (newpage) => {
+watch(currentPage, () => {
   fetchData()
 })
 
@@ -37,7 +34,6 @@ const goToPage = (page: number) => {
   currentPage.value = page;
 }
 
-const router = useRouter()
 
 
 

@@ -9,12 +9,11 @@ import { api } from '@/api'
 
 const sponsors = ref()
 const totalSponsors = ref()
-const fetchData = async (id) => {
+const fetchData = async (id: number) => {
   try {
     const response = await api.get(`/sponsor-detail/${id}/`);
     sponsors.value = response.data.results
     totalSponsors.value = response.data.count
-    console.log(response)
   } catch (error) {
     console.error('Error occurred:', error);
   }

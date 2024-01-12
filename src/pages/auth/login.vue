@@ -4,15 +4,12 @@ import BaseInput from '@/components/BaseInput.vue'
 import { useRouter } from 'vue-router'
 import { api } from '../../api'
 
-
-
 interface User {
   username: string;
   password: string;
 }
 
 const router = useRouter()
-
 
 const formData = ref<User>({
   username: "",
@@ -23,7 +20,7 @@ const errorMessage = ref('');
 
 const login = async () => {
   try {
-    const response = await api.post<User>('/auth/login/', formData.value);
+    const response = await api.post('/auth/login/', formData.value);
     if (response.status === 200) {
       localStorage.setItem('token', response.data.access)
       router.push('/')

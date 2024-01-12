@@ -8,7 +8,6 @@ const fetchData = async () => {
   try {
     const response = await api.get('/dashboard/');
     payment.value = response.data
-    console.log(response)
   } catch (error) {
     console.error('Error occurred:', error);
   }

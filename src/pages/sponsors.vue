@@ -8,10 +8,10 @@ import { useRouter } from 'vue-router'
 const sponsors = ref()
 
 const totalSponsors = ref()
-const currentPage = ref<Number>(1)
+const currentPage = ref(1)
 const totalPages = ref<Number>(1)
 const from_page = ref<Number>(1)
-const to_page = ref<Number>(10)
+const to_page = ref(10)
 const fetchData = async () => {
   try {
     const response = await api.get(`/sponsor-list/?page=${currentPage.value}`);
@@ -20,7 +20,6 @@ const fetchData = async () => {
     totalPages.value = Math.ceil(response.data.count / 10)
     to_page.value = currentPage.value * 10
     from_page.value = to_page.value - 9
-    console.log(response)
   } catch (error) {
     console.error('Error occurred:', error);
   }
@@ -32,7 +31,7 @@ const handleClick = () => {
   router.push('/sponsor/1')
 }
 
-watch(currentPage, (newpage) => {
+watch(currentPage, () => {
   fetchData()
 })
 

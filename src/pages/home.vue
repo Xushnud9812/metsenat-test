@@ -1,4 +1,4 @@
-<script setup>
+<script setup lang="ts">
 import { ref } from 'vue'
 import Navbar from '@/components/Navbar.vue'
 import FilterModal from '@/components/FilterModal.vue'

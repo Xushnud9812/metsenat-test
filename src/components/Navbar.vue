@@ -1,8 +1,8 @@
-<script setup>
+<script setup lang="ts">
 
 import { useRouter } from 'vue-router'
 const router = useRouter()
-const handleClick = () => {
+const goToHome = () => {
   router.push('/')
 }
 const logout = () => {
@@ -16,7 +16,7 @@ const logout = () => {
   <div class="bg-white py-3 !shadow-[0_25px_40px_0px_rgba(0,0,0,0.03)] relative ">
     <div class="container">
       <div class="flex items-center justify-between">
-        <button @click="handleClick">
+        <button @click="goToHome">
           <img src="/metsenat-pro-logo.png" alt="">
         </button>
 
